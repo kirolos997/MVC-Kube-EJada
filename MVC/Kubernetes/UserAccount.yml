@@ -1,0 +1,39 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  name: useraccount-service
+spec:
+  selector:
+    app: useraccount
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: useraccount-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: useraccount
+  template:
+    metadata:
+      labels:
+        app: useraccount
+    spec:
+      containers:
+        - name: useraccount-api
+          image: kirolos1234/microservice:useraccount-service
+          ports:
+            - containerPort: 80
+          env:
+            - name: BACKEND_STRING_CRUD
+              value: http://crud-service.default.svc.cluster.local:80/
+            - name: BACKEND_STRING_AUTH
+              value: http://auth-service.default.svc.cluster.local:81
+            - name: JWT_LIFETIME_MIN
+              value: "1"
