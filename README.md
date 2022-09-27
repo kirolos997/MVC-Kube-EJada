@@ -1,0 +1,2 @@
+# MVC-Kube-EJada
+The purpose of this word file is to understand how we could implement MVC project (server-side rendering) with a web API backend that follows the microservice architecture and communicates with a SQL database on Azure. The hosting of this demo will be on Azure kubernetes managed service “AKS” on Azure. Kindly note that I am also a new learner for this track. So, if you are more familiar with Azure cloud provider and you see that there’s a better approach than the one demonstrated here please reach me out on ksaad@ejada.com
